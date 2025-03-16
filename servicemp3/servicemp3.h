@@ -116,9 +116,9 @@ public:
 
 typedef struct _GstElement GstElement;
 
-typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC, atWMA } audiotype_t;
+typedef enum { atUnknown, atMPEG, atMP3, atAC3, atDTS, atAAC, atPCM, atOGG, atFLAC, atWMA, atDRA } audiotype_t;
 typedef enum { stUnknown, stPlainText, stSSA, stASS, stSRT, stVOB, stPGS, stDVB } subtype_t;
-typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA, ctASF, ctOGG, ctWEBM } containertype_t;
+typedef enum { ctNone, ctMPEGTS, ctMPEGPS, ctMKV, ctAVI, ctMP4, ctVCD, ctCDA, ctASF, ctOGG, ctWEBM, ctDRA } containertype_t;
 
 class eServiceMP3: public iPlayableService, public iPauseableService,
 	public iServiceInformation, public iSeekableService, public iAudioTrackSelection, public iAudioChannelSelection,
@@ -330,7 +330,7 @@ private:
 	bool m_use_prefillbuffer;
 	bool m_paused;
 	bool m_seek_paused;
-	bool m_autoaudio;
+	bool m_autoturnon;
 	/* cuesheet load check */
 	bool m_cuesheet_loaded;
 	/* servicemMP3 chapter TOC support CVR */
@@ -407,6 +407,9 @@ private:
 	std::string m_extra_headers;
 	RESULT trickSeek(gdouble ratio);
 	ePtr<iTSMPEGDecoder> m_decoder; // for showSinglePic when radio
+	std::string m_external_subtitle_path;
+	std::string m_external_subtitle_language;
+	std::string m_external_subtitle_extension;
 };
 
 #endif
