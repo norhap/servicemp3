@@ -519,7 +519,10 @@ eServiceMP3::eServiceMP3(eServiceReference ref):
 	}
 	else
 		filename = m_ref.path.c_str();
-
+	
+	if (!ref.compareSref.empty())
+		filename = ref.compareSref.c_str();
+	
 	gchar *suburi = NULL;
 
 	m_external_subtitle_path = "";
